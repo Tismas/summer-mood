@@ -1,6 +1,7 @@
 class Player {
     constructor() {
-        this.x = 5;
-        this.y = 10;
+        let playerData = JSON.parse(localStorage['player'] || '{}')
+        this.x = playerData.x || 0;
+        this.y = playerData.y || 0;
     }
 }
