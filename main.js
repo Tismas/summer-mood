@@ -33,14 +33,14 @@ let drawMap = () => {
 
     let playerTileY = Math.floor(player.y / gfx.outputTileSize);
         playerTileX = Math.floor(player.x / gfx.outputTileSize);
-    for(let y = 0; y < renderHeight; y++) {
-        for(let x = 0; x < renderWidth; x++) {
-            let tx = player.x + x - Math.floor(renderWidth/2),
-                ty = player.y + y - Math.floor(renderHeight/2),
+    for(let y = 0; y < renderHeight + 1; y++) {
+        for(let x = 0; x < renderWidth + 1; x++) {
+            let tx = player.x/64 + x - Math.floor(renderWidth/2),
+                ty = player.y/64 + y - Math.floor(renderHeight/2),
                 tileX = Math.floor(tx / gfx.outputTileSize),
                 tileY = Math.floor(ty / gfx.outputTileSize);
             if (map.map[tileY] && map.map[tileY][tileX] != undefined) {
-                gfx.drawTile(ctx, map.map[tileY][tileX], {x: x * gfx.outputTileSize, y: y * gfx.outputTileSize});
+                gfx.drawTile(ctx, map.map[tileY][tileX], {x: x * gfx.outputTileSize - player.x % gfx.outputTileSize, y: y * gfx.outputTileSize - player.y % gfx.outputTileSize});
             }
             else
                 gfx.drawTile(ctx, 'sand', {x: x * gfx.outputTileSize, y: y * gfx.outputTileSize})
