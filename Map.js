@@ -1,11 +1,11 @@
 class Map {
-    constructor() {
-        this.w = 5; 
-        this.h = 5;   
+    constructor(width, height) {
+        this.width = 5; 
+        this.height = 5;   
         this.map = [];
-        for (var i = 0; i < this.w; i++){
+        for (var i = 0; i < this.width; i++){
                 let row = [];
-                for (var j = 0; j < this.h; j++){
+                for (var j = 0; j < this.height; j++){
                     row[j] = 0;
                 }
                 this.map.push(row);
