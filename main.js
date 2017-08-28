@@ -1,6 +1,6 @@
 let canvas = document.getElementById('game'),
     ctx = canvas.getContext('2d'),
-    gfx = Graphics();
+    gfx = new Graphics();
 
 let resize = () => {
     canvas.width = window.innerWidth;
@@ -14,6 +14,7 @@ let update = () => {
 
 let render = () => {
     gfx.drawTile(ctx, 'grass', {x: 1, y: 1});
+    gfx.drawTile(ctx, 'bigGrass', {x: 1, y: 2});
     setTimeout(update, 1000/60);
 }
 

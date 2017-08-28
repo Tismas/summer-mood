@@ -1,17 +1,18 @@
 class Graphics {
     constructor() {
-        this.tileSize = 64;
+        this.sourceTileSize = 64;
+        this.outputTileSize = 64;
         this.tilesColumnsCount = 0;
         this.tilesRowsCount = 0;
         this.images = {
             tileset: new Image(),
-            player: new Image()
+            // player: new Image()
         };
 
-        this.images.tileset.onload = this.initSizes;
+        this.images.tileset.onload = this.initSizes.bind(this);
 
         this.images.tileset.src = 'assets/tileset.png';
-        this.images.player.src = 'assets/player.png';
+        // this.images.player.src = 'assets/player.png';
     
         this.tiles = {
             grass: 0,
@@ -20,8 +21,8 @@ class Graphics {
     }
 
     initSizes() {
-        this.tilesColumnsCount = this.images.tileset.width / this.tileSize;
-        this.tilesRowsCount = this.images.tileset.height / this.tileSize;
+        this.tilesColumnsCount = this.images.tileset.width / this.sourceTileSize;
+        this.tilesRowsCount = this.images.tileset.height / this.sourceTileSize;
     }
 
     drawTile(ctx, tileName, position) {
@@ -29,7 +30,7 @@ class Graphics {
             x = index % this.tilesColumnsCount,
             y = Math.floor(index / this.tilesRowsCount);
         
-        ctx.drawImage(this.images.tileset, x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize,
-                      position.x * this.tileSize, position.y * this.tileSize, this.tileSize, this.tileSize);
+        ctx.drawImage(this.images.tileset, x * this.sourceTileSize, y * this.sourceTileSize, this.sourceTileSize, this.sourceTileSize,
+                      position.x * this.outputTileSize, position.y * this.outputTileSize, this.outputTileSize, this.outputTileSize);
     }
 }
