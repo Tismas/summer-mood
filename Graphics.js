@@ -41,6 +41,6 @@ class Graphics {
 
     drawPlayer(canvas, ctx) {
         ctx.drawImage(this.images.player, this.sourceTileSize * 0, this.sourceTileSize * 3, this.sourceTileSize, this.sourceTileSize,
-                      canvas.width/2, canvas.height/2, this.outputTileSize, this.outputTileSize);
+                      canvas.width/2, canvas.height/2 - 32, this.outputTileSize, this.outputTileSize);
     }
 }

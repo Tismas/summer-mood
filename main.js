@@ -27,7 +27,7 @@ let update = () => {
     if (player.x < 0) player.x = 0;
     if (player.x > map.width * gfx.outputTileSize) player.x = map.width * gfx.outputTileSize;
     if (player.y < 0) player.y = 0;
-    if (player.y > map.height * gfx.outputTileSize) player.x = map.height * gfx.outputTileSize;
+    if (player.y > map.height * gfx.outputTileSize) player.y = map.height * gfx.outputTileSize;
     render();
 }
 
