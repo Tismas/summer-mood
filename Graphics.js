@@ -16,7 +16,8 @@ class Graphics {
     
         this.tiles = {
             grass: 0,
-            bigGrass: 1
+            bigGrass: 1,
+            sand: 2
         }
     }
 
