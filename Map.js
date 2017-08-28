@@ -6,7 +6,7 @@ class Map {
         for (var i = 0; i < this.width; i++){
                 let row = [];
                 for (var j = 0; j < this.height; j++){
-                    row[j] = 0;
+                    row[j] = 'bigGrass';
                 }
                 this.map.push(row);
             }
