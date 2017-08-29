@@ -1,7 +1,7 @@
 let canvas = document.getElementById('game'),
     ctx = canvas.getContext('2d'),
     gfx = new Graphics(),
-    map = new Map(),
+    map = new Map(5, 5),
     player = new Player(),
     keyboard = new Keyboard();
 
@@ -25,9 +25,9 @@ let update = () => {
         player.x++;
     }
     if (player.x < 0) player.x = 0;
-    if (player.x > map.width * gfx.outputTileSize) player.x = map.width * gfx.outputTileSize;
+    if (player.x > (map.width - 1) * gfx.outputTileSize) player.x = (map.width - 1) * gfx.outputTileSize;
     if (player.y < 0) player.y = 0;
-    if (player.y > map.height * gfx.outputTileSize) player.y = map.height * gfx.outputTileSize;
+    if (player.y > (map.height - 1) * gfx.outputTileSize) player.y = (map.height - 1) * gfx.outputTileSize;
     render();
 }
 
@@ -41,13 +41,14 @@ let drawMap = () => {
         for(let x = 0; x < renderWidth + 1; x++) {
             let tx = player.x/64 + x - Math.floor(renderWidth/2),
                 ty = player.y/64 + y - Math.floor(renderHeight/2),
-                tileX = Math.floor(tx / gfx.outputTileSize),
-                tileY = Math.floor(ty / gfx.outputTileSize);
+                tileX = Math.floor(tx),
+                tileY = Math.floor(ty);
             if (map.map[tileY] && map.map[tileY][tileX] != undefined) {
                 gfx.drawTile(ctx, map.map[tileY][tileX], {x: x * gfx.outputTileSize - player.x % gfx.outputTileSize, y: y * gfx.outputTileSize - player.y % gfx.outputTileSize});
             }
-            else
-                gfx.drawTile(ctx, 'sand', {x: x * gfx.outputTileSize, y: y * gfx.outputTileSize})
+            else {
+                gfx.drawTile(ctx, 'sand', {x: x * gfx.outputTileSize - player.x % gfx.outputTileSize, y: y * gfx.outputTileSize - player.y % gfx.outputTileSize});
+            }
         }
     }
     gfx.drawPlayer(canvas, ctx);
